@@ -13,4 +13,7 @@ contextBridge.exposeInMainWorld('electron', {
   invoke: (channel, ...args) => {
     return ipcRenderer.invoke(channel, ...args);
   },
+  moveFilesToParentFolder: (folders) => {
+    ipcRenderer.send('move-files-to-parent', folders);
+  },
 });

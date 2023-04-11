@@ -1,8 +1,7 @@
-const { moveFilesToParentFolder } = require('./movefiles');
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const dotenv = require("dotenv");
-
+const { moveFilesToParentFolder } = require('./movefiles');
 
 dotenv.config();
 
@@ -53,4 +52,9 @@ ipcMain.handle('select-folders', async () => {
     properties: ['openDirectory', 'multiSelections'],
   });
   return result.filePaths;
+});
+
+
+ipcMain.on('move-files-to-parent', (event, folders) => {
+  moveFilesToParentFolder(folders);
 });
