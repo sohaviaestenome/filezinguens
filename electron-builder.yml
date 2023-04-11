@@ -1,0 +1,35 @@
+appId: Filezilla magilla
+productName: Filezinguens
+directories:
+  output: dist
+  buildResources: assets
+files:
+  - build/**
+  - public/**
+  - package.json
+  - node_modules/**
+mac:
+  category: your.app.category
+  icon: assets/icon.icns
+  target: ['dmg']
+  artifactName: "${productName}-${version}-${arch}.${ext}"
+  extendInfo:
+    LSUIElement: 1
+  extraResources:
+    - from: public/electron/main.js
+      to: main.js
+linux:
+  icon: assets/icon.png
+  target: ['deb']
+  artifactName: "${productName}-${version}-${arch}.${ext}"
+  extraResources:
+    - from: public/electron/main.js
+      to: main.js
+win:
+  icon: assets/icon.png
+  target:
+    - 'portable'
+  artifactName: "${productName}-${version}-${arch}.${ext}"
+  extraResources:
+    - from: public/electron/main.js
+      to: main.js

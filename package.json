@@ -1,5 +1,6 @@
 {
   "name": "filezinguens",
+  "productName": "FileZinGueNs",
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
@@ -37,7 +38,10 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "globals": {
+      "__webpack_public_path__": "writable"
+    }
   },
   "browserslist": {
     "production": [
