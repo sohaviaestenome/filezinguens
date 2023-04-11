@@ -12,16 +12,11 @@ export const FolderPicker = ({ onFoldersChange }) => {
   const [selectedFolders, setSelectedFolders] = useState([]);
 
   const handleFolderSelect = async () => {
-    const result = await window.electron.showDialog({
-      properties: ['openDirectory', 'multiSelections'],
-    });
+    const filePaths = await window.electron.invoke('select-folders');
+    setSelectedFolders([...selectedFolders, ...filePaths]);
 
-    if (result.filePaths) {
-      setSelectedFolders([...selectedFolders, ...result.filePaths]);
-
-      if (onFoldersChange) {
-        onFoldersChange([...selectedFolders, ...result.filePaths]);
-      }
+    if (onFoldersChange) {
+      onFoldersChange([...selectedFolders, ...filePaths]);
     }
   };
 
