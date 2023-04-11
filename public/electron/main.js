@@ -1,5 +1,5 @@
 const { moveFilesToParentFolder } = require('./movefiles');
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const dotenv = require("dotenv");
 
@@ -15,7 +15,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
-      preload: path.join(__dirname, '..', 'public','electron', 'preload.js'),
+      preload: path.join(__dirname, 'preload.js'),
     }
   });
 
@@ -48,6 +48,9 @@ app.on('window-all-closed', () => {
   }
 })
 
-ipcMain.on('move-files-to-parent', (event, folders) => {
-  moveFilesToParentFolder(folders);
+ipcMain.handle('select-folders', async () => {
+  const result = await dialog.showOpenDialog({
+    properties: ['openDirectory', 'multiSelections'],
+  });
+  return result.filePaths;
 });

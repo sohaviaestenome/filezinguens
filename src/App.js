@@ -1,9 +1,10 @@
+// App.js
 import './App.css';
 import { FolderPicker } from './Components/FolderPicker';
 
 function App() {
   const handleFoldersChange = (folders) => {
-    window.electron.send('move-files-to-parent', folders);
+    console.log('Selected folders:', folders);
   };
 
   return (
