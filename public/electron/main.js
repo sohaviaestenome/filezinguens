@@ -47,6 +47,7 @@ app.on('window-all-closed', () => {
   }
 })
 
+//origin folder selection
 ipcMain.handle('select-folders', async () => {
   const result = await dialog.showOpenDialog({
     properties: ['openDirectory', 'multiSelections'],
@@ -54,7 +55,15 @@ ipcMain.handle('select-folders', async () => {
   return result.filePaths;
 });
 
+//destination folder selection
+ipcMain.handle('select-folder', async () => {
+  const result = await dialog.showOpenDialog({
+    properties: ['openDirectory'],
+  });
+  return result.filePaths;
+});
 
-ipcMain.on('move-files-to-parent', (event, folders) => {
-  moveFilesToParentFolder(folders);
+//function call to execute move
+ipcMain.on('move-files-to-parent', (event, folders, destinationFolder) => {
+  moveFilesToParentFolder(folders, destinationFolder);
 });
