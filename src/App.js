@@ -24,7 +24,6 @@ function App() {
     window.electron.moveFilesToParentFolder({ folders: selectedFolders, destinationFolder });
   };
   
-
   return (
     <div>
       <h1>Folder Picker</h1>
