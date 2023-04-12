@@ -64,6 +64,9 @@ ipcMain.handle('select-folder', async () => {
 });
 
 //function call to execute move
-ipcMain.on('move-files-to-parent', (event, folders, destinationFolder) => {
+ipcMain.on('move-files-to-parent', (event, data) => {
+  const { folders, destinationFolder } = data;
+  console.log('Received selectedFolders:', folders);
+  console.log('Received destinationFolder:', destinationFolder);
   moveFilesToParentFolder(folders, destinationFolder);
 });

@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 const moveFilesToParentFolder = async (folders, destinationFolder) => {
+  console.log("Destination folder (in function):", destinationFolder);
+  
   for (const folder of folders) {
     const parentFolder = path.dirname(folder);
 
@@ -20,8 +22,8 @@ const moveFilesToParentFolder = async (folders, destinationFolder) => {
           ['.mkv', '.avi', '.wmv'].includes(fileExtension) &&
           fs.lstatSync(filePath).isFile()
         ) {
-          // Use the destinationFolder if provided, otherwise, use the parentFolder
-          const targetFolder = destinationFolder || parentFolder;
+          const targetFolder = destinationFolder.length > 0 ? destinationFolder[0] : parentFolder;
+          console.log("Target folder (in loop):", targetFolder);
           const newFilePath = path.join(targetFolder, file);
 
           fs.rename(filePath, newFilePath, (err) => {

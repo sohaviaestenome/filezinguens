@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 function App() {
   const [selectedFolders, setSelectedFolders] = useState([]);
-  const [destinationFolder, setDestinationFolder] = useState(null);
+  const [destinationFolder, setDestinationFolder] = useState([]);
 
   const handleFoldersChange = (folders) => {
     console.log('Selected folders:', folders);
@@ -15,12 +15,15 @@ function App() {
 
   const handleDestinationFolderChange = (folder) => {
     console.log('Destination folder:', folder);
-    setDestinationFolder(folder);
+    setDestinationFolder([folder]);
   };
 
   const handleExecute = () => {
-  window.electron.moveFilesToParentFolder(selectedFolders, destinationFolder);
+    console.log('Sending selectedFolders:', selectedFolders);
+    console.log('Sending destinationFolder:', destinationFolder);
+    window.electron.moveFilesToParentFolder({ folders: selectedFolders, destinationFolder });
   };
+  
 
   return (
     <div>
