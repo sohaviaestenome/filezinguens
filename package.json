@@ -23,6 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "prebuild": "shx rm -rf build/electron",
+    "postbuild": "shx mv build/electron/main.js build/electron.js && shx cp -r public/electron/* build/ && shx rm -rf build/electron && shx rm -rf build/main.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-start": "electron .",
@@ -57,6 +59,7 @@
   },
   "devDependencies": {
     "electron": "^24.0.0",
-    "electron-builder": "^23.6.0"
+    "electron-builder": "^23.6.0",
+    "shx": "^0.3.4"
   }
 }
