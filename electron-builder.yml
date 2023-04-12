@@ -15,21 +15,12 @@ mac:
   artifactName: "${productName}-${version}-${arch}.${ext}"
   extendInfo:
     LSUIElement: 1
-  extraResources:
-    - from: public/electron/main.js
-      to: main.js
 linux:
   icon: assets/icon.png
   target: ['deb']
   artifactName: "${productName}-${version}-${arch}.${ext}"
-  extraResources:
-    - from: public/electron/main.js
-      to: main.js
 win:
   icon: assets/icon.png
   target:
     - 'portable'
   artifactName: "${productName}-${version}-${arch}.${ext}"
-  extraResources:
-    - from: public/electron/main.js
-      to: main.js
