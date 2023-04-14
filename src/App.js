@@ -10,18 +10,14 @@ function App() {
   const [destinationFolder, setDestinationFolder] = useState([]);
 
   const handleFoldersChange = (folders) => {
-    console.log('Selected folders:', folders);
     setSelectedFolders(folders);
   };
 
   const handleDestinationFolderChange = (folder) => {
-    console.log('Destination folder:', folder);
     setDestinationFolder([folder]);
   };
 
   const handleExecute = () => {
-    console.log('Sending selectedFolders:', selectedFolders);
-    console.log('Sending destinationFolder:', destinationFolder);
     window.electron.moveFilesToParentFolder({ folders: selectedFolders, destinationFolder });
   };
   

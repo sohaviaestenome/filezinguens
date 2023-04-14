@@ -29,12 +29,17 @@ test('sends the correct folder data to the Electron backend', async () => {
   fireEvent.click(selectFoldersBtn);
 
   await waitFor(() => {
-    expect(window.electron.invoke).toHaveBeenCalledWith('select-folders');
-  });
+  const expectedAction = 'select-folders';
+  const actualAction = window.electron.invoke.mock.calls[0][0];
+  expect(actualAction).toBe(expectedAction);
+});
 
-  fireEvent.click(selectDestinationFolderBtn);
+fireEvent.click(selectDestinationFolderBtn);
 
-  await waitFor(() => {
-    expect(window.electron.invoke).toHaveBeenCalledWith('select-folder');
-  });
+await waitFor(() => {
+  const expectedAction = 'select-folder';
+  const actualAction = window.electron.invoke.mock.calls[1][0];
+  expect(actualAction).toBe(expectedAction);
+});
+
 });
