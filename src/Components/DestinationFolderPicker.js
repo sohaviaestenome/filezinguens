@@ -1,4 +1,4 @@
-// src/Components/DestinationFolderPicker.js
+//DestinationFolderPicker.js
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';

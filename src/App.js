@@ -1,3 +1,4 @@
+//App.js
 import { useState } from 'react';
 import { FolderPicker } from './Components/FolderPicker';
 import { DestinationFolderPicker } from './Components/DestinationFolderPicker';
